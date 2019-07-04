@@ -1,0 +1,25 @@
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+http:
+    base_url: !secret http_url
+    ssl_certificate: /ssl/fullchain.pem
+    ssl_key: /ssl/privkey.pem
+
+google_assistant:
+    project_id: !secret g_assistant_id
+    api_key: !secret g_assistant_api_key
+
+# Text to speech
+tts:
+    - platform: google_translate
+      service_name: google_say
+
+discovery:
+    enable:
+        - philips_hue
+        - samsung_tv
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
